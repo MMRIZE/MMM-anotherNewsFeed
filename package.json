@@ -1,0 +1,24 @@
+{
+  "name": "mmm-anothernewsfeed",
+  "version": "1.0.0",
+  "description": "special modification of original newsfeed",
+  "main": "MMM-anotherNewsFeed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMRIZE/MMM-anotherNewsFeed.git"
+  },
+  "author": "eouia0819@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MMRIZE/MMM-anotherNewsFeed/issues"
+  },
+  "homepage": "https://github.com/MMRIZE/MMM-anotherNewsFeed#readme",
+  "dependencies": {
+    "feedme": "^2.0.2",
+    "iconv-lite": "^0.6.3",
+    "node-fetch": "^2.6.7"
+  }
+}
