@@ -42,7 +42,6 @@ Module.register("MMM-anotherNewsFeed", {
 		logFeedWarnings: false,
 		dangerouslyDisableAutoEscaping: false,
 		showImage: true,
-		transformArticle: (obj) => { return obj }
 	},
 
 	// Define required scripts.
