@@ -42,6 +42,7 @@ Module.register("MMM-anotherNewsFeed", {
 		logFeedWarnings: false,
 		dangerouslyDisableAutoEscaping: false,
 		showImage: true,
+		censorWords: [],
 	},
 
 	// Define required scripts.
@@ -241,6 +242,15 @@ Module.register("MMM-anotherNewsFeed", {
 						}
 					}
 				}
+			}
+			if (Array.isArray(this.config.censorWords) && this.config.censorWords.length > 0) {
+				let rgx = new RegExp(this.config.censorWords.join("|"), "gi")
+				const filter = (str) => { 
+					return str.replace(rgx, "")
+				}
+
+				item.title = filter(item.title)
+				item.description = filter(item.description)
 			}
 		});
 

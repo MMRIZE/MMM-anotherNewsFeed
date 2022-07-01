@@ -26,7 +26,11 @@
     {% if config.showAsList %}
         <ul class="newsfeed-list">
             {% for item in items %}
-                <li>
+                <li class="container {% if config.showImage and item.image %} withImage {% endif %}">
+                    {% if config.showImage and item.image %}
+                        <div class="newsfeed-image" style="background-image: url({{item.image}})"></div>
+                    {% endif %}
+                    <div class="newsfeed-article">
                     {% if (config.showSourceTitle and item.sourceTitle) or config.showPublishDate %}
                         <div class="newsfeed-source light small dimmed">
                             {% if item.sourceTitle and config.showSourceTitle %}
@@ -49,6 +53,7 @@
                             {% endif %}
                         </div>
                     {% endif %}
+                    </div>
                 </li>
             {% endfor %}
         </ul>
@@ -56,9 +61,7 @@
        
         <div class="container {% if config.showImage and image %} withImage {% endif %}">
             {% if config.showImage and image %}
-                <div class="newsfeed-image" style="background-image: url({{image}})">
-                </div>
-
+                <div class="newsfeed-image" style="background-image: url({{image}})"></div>
             {% endif %}
             <div class="newsfeed-article">
             {% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}
