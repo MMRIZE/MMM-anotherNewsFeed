@@ -58,12 +58,12 @@
             {% endfor %}
         </ul>
     {% else %}
-       
+
         <div class="container {% if config.showImage and image %} withImage {% endif %}">
+            <div class="newsfeed-article">
             {% if config.showImage and image %}
                 <div class="newsfeed-image" style="background-image: url({{image}})"></div>
             {% endif %}
-            <div class="newsfeed-article">
             {% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}
                 <div class="newsfeed-source light small dimmed">
                     {% if sourceTitle and config.showSourceTitle %}

@@ -84,7 +84,6 @@ Module.register("MMM-anotherNewsFeed", {
 	// Override socket notification handler.
 	socketNotificationReceived: function (notification, payload) {
 		if (notification === "NEWS_ITEMS") {
-
 			this.generateFeed(payload);
 
 			if (!this.loaded) {
@@ -245,7 +244,7 @@ Module.register("MMM-anotherNewsFeed", {
 			}
 			if (Array.isArray(this.config.censorWords) && this.config.censorWords.length > 0) {
 				let rgx = new RegExp(this.config.censorWords.join("|"), "gi")
-				const filter = (str) => { 
+				const filter = (str) => {
 					return str.replace(rgx, "")
 				}
 

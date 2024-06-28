@@ -36,8 +36,12 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 	 * Request the new items.
 	 */
 	const fetchNews = () => {
-		const isImage = (url) => {
-			return (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(url)
+		const isImage = (url, type = null) => {
+			if (type && type.search('image') > -1) {
+				return true
+			} else {
+				return (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(url)
+			}
 		}
 		clearTimeout(reloadTimer);
 		reloadTimer = null;
@@ -55,15 +59,23 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 			if (Array.isArray(item?.link)) {
 				images = [...images, ...(item.link.filter((i) => {
 					return isImage(i?.href ?? '')
-				}).map((i) => { return i.href}))] 
+				}).map((i) => { return i.href}))]
 			}
-			if (isImage(item?.enclosure?.url)) {
+			if (isImage(item?.enclosure?.url, item?.enclosure?.type)) {
 				images.push(item.enclosure.url)
 			}
 			if (isImage(item?.['media:content']?.url)) {
 				images.push(item['media:content'].url)
 			}
-			
+
+			if (item?.description) {
+				const regex = /<img[^>]+src="([^">]+)"/g;
+				let match;
+				while (match = regex.exec(item.description)) {
+					images.push(match[1])
+				}
+			}
+
 			if (title && pubdate) {
 				const regex = /(<([^>]+)>)/gi;
 				description = description.toString().replace(regex, "");
