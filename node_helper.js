@@ -1,10 +1,3 @@
-/* MagicMirror²
- * Node Helper: Newsfeed
- *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
- */
-
 const NodeHelper = require("node_helper");
 const NewsfeedFetcher = require("./newsfeedfetcher.js");
 const Log = require("logger");

@@ -1,10 +1,5 @@
-/* MagicMirror²
- * Module: MMM-anotherNewsFeed
- *
- * Original by Michael Teeuw https://michaelteeuw.nl
- * Modified by eouia0819@gmail.com
- * MIT Licensed.
- */
+/* globals config Log Module moment */
+
 Module.register("MMM-anotherNewsFeed", {
 	// Default module config.
 	defaults: {
@@ -336,7 +331,7 @@ Module.register("MMM-anotherNewsFeed", {
 		}
 	},
 
-	notificationReceived: function (notification, payload, sender) {
+	notificationReceived: function (notification) {
 		const before = this.activeItem;
 		if (notification === "MODULE_DOM_CREATED" && this.config.hideLoading) {
 			this.hide();

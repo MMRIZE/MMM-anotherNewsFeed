@@ -1,4 +1,4 @@
-const crypto = require("node:crypto");
+const hashUtility = require("node:crypto");
 const stream = require("node:stream");
 const FeedMe = require("feedme");
 const iconv = require("iconv-lite");
@@ -69,7 +69,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
       if (item?.description) {
 				const regex = /<img[^>]+src="([^">]+)"/g;
 				let match;
-				while (match = regex.exec(item.description)) {
+				while ((match = regex.exec(item.description))) {
 					images.push(match[1])
 				}
 			}
@@ -92,7 +92,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 					url: url,
           useCorsProxy: useCorsProxy,
           image: images?.[0] || null,
-					hash: crypto.createHash("sha256").update(`${pubdate} :: ${title} :: ${url}`).digest("hex")
+					hash: hashUtility.createHash("sha256").update(`${pubdate} :: ${title} :: ${url}`).digest("hex")
 				});
 			} else if (logFeedWarnings) {
 				Log.warn("Can't parse feed item:");
@@ -125,7 +125,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 					reloadIntervalMS = ttlms;
 					Log.info(`Newsfeed-Fetcher: reloadInterval set to ttl=${reloadIntervalMS} for url ${url}`);
 				}
-			} catch (error) {
+			} catch {
 				Log.warn(`Newsfeed-Fetcher: feed ttl is no valid integer=${minutes} for url ${url}`);
 			}
 		});

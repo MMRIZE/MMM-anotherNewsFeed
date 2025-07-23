@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "special modification of original newsfeed",
   "main": "MMM-anotherNewsFeed.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "node --run lint"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,12 @@
   "dependencies": {
     "feedme": "^2.0.2",
     "iconv-lite": "^0.6.3"
+  },
+  "devDependencies": {
+    "@eslint/css": "^0.10.0",
+    "@eslint/js": "^9.31.0",
+    "@eslint/markdown": "^7.1.0",
+    "eslint": "^9.31.0",
+    "globals": "^16.3.0"
   }
 }
