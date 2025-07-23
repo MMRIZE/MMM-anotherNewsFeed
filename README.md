@@ -4,6 +4,10 @@
 
 This module is a modified version of the default [newsfeed](https://github.com/MagicMirrorOrg/MagicMirror/tree/master/modules/default/newsfeed) module. This was inspired by a request in the forum: <https://forum.magicmirror.builders/topic/16933/developer-wanted-to-modify-default-newsfeed-module>.
 
+## Screenshot
+
+![Screenshot](screenshot.png)
+
 ## Installation
 
 Navigate to your MagicMirror modules directory, clone this repository and install the dependencies:
