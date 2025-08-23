@@ -177,16 +177,13 @@ Module.register("MMM-anotherNewsFeed", {
 				for (let item of feedItems) {
 					item.sourceTitle = this.titleForFeed(feed);
 					if (!(this.config.ignoreOldItems && Date.now() - new Date(item.pubdate) > this.config.ignoreOlderThan)) {
-						if(this.config.suppressDuplicateTitles) {
-							if(duplicateTitle(newsItems, item)) {
-								newsItems.push(item);
-							} else {
+						if (this.config.suppressDuplicateTitles) {
+							if (!duplicateTitle(newsItems, item)) {
 								newsItems.push(item);
 							}
 						} else {
 							newsItems.push(item);
 						}
-						
 					}
 				}
 			}
@@ -315,7 +312,7 @@ Module.register("MMM-anotherNewsFeed", {
 	 */
 	duplicateTitle: function (newsItems, item) {
 
-		return true;
+		return false;
 	},
 	
 
