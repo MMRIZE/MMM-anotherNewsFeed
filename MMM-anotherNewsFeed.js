@@ -311,8 +311,8 @@ Module.register("MMM-anotherNewsFeed", {
 	 * @returns {boolean} True if the title of item already is the same as any of the titles in an array of news items.
 	 */
 	duplicateTitle: function (newsItems, item) {
-
-		return false;
+		const newTitle = item.title.toLowerCase();
+		return newsItems.some((existingItem) => existingItem.title.toLowerCase() === newTitle);
 	},
 	
 
