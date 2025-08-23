@@ -301,6 +301,20 @@ Module.register("MMM-anotherNewsFeed", {
 		return "";
 	},
 
+
+	/**
+	 * Check if the title of a news item exists in an array of news items.
+	 *
+	 * @param {object} newsItems array of news items
+  	 * @param {object} item a news item 
+	 * @returns {boolean} True if the title of item already is the same as any of the titles in an array of news items.
+	 */
+	duplicateTitle: function (newsItems, item) {
+
+		return false;
+	},
+	
+
 	/**
 	 * Schedule visual update.
 	 */
