@@ -38,6 +38,7 @@ Module.register("MMM-anotherNewsFeed", {
 		dangerouslyDisableAutoEscaping: false,
 		showImage: true,
 		censorWords: [],
+		suppressDuplicateTitles: false,
 	},
 
 	// Define required scripts.
