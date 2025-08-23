@@ -178,7 +178,9 @@ Module.register("MMM-anotherNewsFeed", {
 					item.sourceTitle = this.titleForFeed(feed);
 					if (!(this.config.ignoreOldItems && Date.now() - new Date(item.pubdate) > this.config.ignoreOlderThan)) {
 						if(this.config.suppressDuplicateTitles) {
-							newsItems.push(item);
+							if(!duplicateTitle(newsItems, item) {
+								newsItems.push(item);
+							}
 						} else {
 							newsItems.push(item);
 						}
