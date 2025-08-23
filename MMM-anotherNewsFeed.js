@@ -313,7 +313,7 @@ Module.register("MMM-anotherNewsFeed", {
 	 */
 	duplicateTitle: function (newsItems, item) {
 
-		return false;
+		return true;
 	},
 	
 
