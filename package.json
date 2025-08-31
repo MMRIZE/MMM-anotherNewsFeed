@@ -1,6 +1,6 @@
 {
   "name": "mmm-anothernewsfeed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A module for MagicMirror² to show news feeds from various sources with images.",
   "keywords": [
     "MagicMirror",
