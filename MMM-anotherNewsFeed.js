@@ -38,6 +38,7 @@ Module.register("MMM-anotherNewsFeed", {
 		dangerouslyDisableAutoEscaping: false,
 		showImage: true,
 		censorWords: [],
+		suppressDuplicateTitles: false,
 	},
 
 	// Define required scripts.
@@ -176,7 +177,13 @@ Module.register("MMM-anotherNewsFeed", {
 				for (let item of feedItems) {
 					item.sourceTitle = this.titleForFeed(feed);
 					if (!(this.config.ignoreOldItems && Date.now() - new Date(item.pubdate) > this.config.ignoreOlderThan)) {
-						newsItems.push(item);
+						if (this.config.suppressDuplicateTitles) {
+							if (!this.duplicateTitle(newsItems, item)) {
+								newsItems.push(item);
+							}
+						} else {
+							newsItems.push(item);
+						}
 					}
 				}
 			}
@@ -294,6 +301,20 @@ Module.register("MMM-anotherNewsFeed", {
 		}
 		return "";
 	},
+
+
+	/**
+	 * Check if the title of a news item exists in an array of news items.
+	 *
+	 * @param {object} newsItems array of news items
+  	 * @param {object} item a news item 
+	 * @returns {boolean} True if the title of item already is the same as any of the titles in an array of news items.
+	 */
+	duplicateTitle: function (newsItems, item) {
+		const newTitle = item.title.toLowerCase();
+		return newsItems.some((existingItem) => existingItem.title.toLowerCase() === newTitle);
+	},
+	
 
 	/**
 	 * Schedule visual update.
