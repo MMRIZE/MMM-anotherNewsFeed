@@ -2,6 +2,11 @@
   "name": "mmm-anothernewsfeed",
   "version": "1.0.1",
   "description": "special modification of original newsfeed",
+  "keywords": [
+    "MagicMirror",
+    "newsfeed",
+    "images"
+  ],
   "main": "MMM-anotherNewsFeed.js",
   "type": "commonjs",
   "scripts": {
