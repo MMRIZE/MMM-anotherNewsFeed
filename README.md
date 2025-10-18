@@ -95,6 +95,10 @@ Add the following configuration example to your `config.js` file:
 | `censorWords` | array | `[]` | List of words or regex-like fragments to remove from titles and descriptions. |
 | `suppressDuplicateTitles` | boolean | `false` | When true, filter out items with duplicate titles. |
 
+## Code of Conduct
+
+Please see the [Code of Conduct](CODE_OF_CONDUCT.md). By contributing you agree to its terms.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
