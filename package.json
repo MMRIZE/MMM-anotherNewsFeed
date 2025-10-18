@@ -26,6 +26,7 @@
   "homepage": "https://github.com/MMRIZE/MMM-anotherNewsFeed#readme",
   "dependencies": {
     "feedme": "^2.0.2",
+    "html-to-text": "^9.0.5",
     "iconv-lite": "^0.7.0"
   },
   "devDependencies": {
