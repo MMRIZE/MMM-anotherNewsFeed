@@ -66,10 +66,18 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 				images.push(item['media:content'].url)
       }
 
-      if (item?.description) {
+      // Check both description and content:encoded for img tags
+			const contentToCheck = [
+				item?.description,
+				item?.content,
+				item?.[':content:encoded'],
+				item?.['content:encoded']
+			].filter(Boolean);
+
+			for (const content of contentToCheck) {
 				const regex = /<img[^>]+src="([^">]+)"/g;
 				let match;
-				while ((match = regex.exec(item.description))) {
+				while ((match = regex.exec(content))) {
 					images.push(match[1])
 				}
 			}
