@@ -74,7 +74,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 			].filter(Boolean);
 
 			for (const content of contentToCheck) {
-				const regex = /<img[^>]+src="([^">]+)"/g;
+				const regex = /<img[^>]+src=["']([^"'>]+)["']/g;
 				let match;
 				while ((match = regex.exec(content))) {
 					images.push(match[1])
