@@ -12,10 +12,9 @@ const NodeHelper = require("node_helper");
  * @param {number} reloadInterval Reload interval in milliseconds.
  * @param {string} encoding Encoding of the feed.
  * @param {boolean} logFeedWarnings If true log warnings when there is an error parsing a news article.
- * @param {boolean} useCorsProxy If true cors proxy is used for article url's.
  * @class
  */
-const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings, useCorsProxy) {
+const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings) {
 	let reloadTimer = null;
 	let items = [];
 	let reloadIntervalMS = reloadInterval;
@@ -98,7 +97,6 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 					description: description,
 					pubdate: pubdate,
 					url: url,
-          useCorsProxy: useCorsProxy,
           image: images?.[0] || null,
 					hash: hashUtility.createHash("sha256").update(`${pubdate} :: ${title} :: ${url}`).digest("hex")
 				});
