@@ -13,6 +13,7 @@
     "demo": "cd ../../ && MM_CONFIG_FILE=modules/MMM-anotherNewsFeed/demo.config.js node --run start:dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "release": "commit-and-tag-version --commit-all --config ./changelog.config.js",
     "test": "node --run lint"
   },
   "repository": {
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/css": "^1.1.0",
+    "commit-and-tag-version": "^12.7.1",
     "@eslint/js": "^10.0.1",
     "@eslint/markdown": "^8.0.1",
     "eslint": "^10.1.0",
