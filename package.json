@@ -27,13 +27,13 @@
   "dependencies": {
     "feedme": "^2.0.2",
     "html-to-text": "^9.0.5",
-    "iconv-lite": "^0.7.0"
+    "iconv-lite": "^0.7.2"
   },
   "devDependencies": {
-    "@eslint/css": "^0.13.0",
-    "@eslint/js": "^9.38.0",
-    "@eslint/markdown": "^7.4.0",
-    "eslint": "^9.38.0",
-    "globals": "^16.4.0"
+    "@eslint/css": "^1.1.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint/markdown": "^8.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0"
   }
 }
