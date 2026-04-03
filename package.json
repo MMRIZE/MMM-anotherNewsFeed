@@ -10,6 +10,7 @@
   "main": "MMM-anotherNewsFeed.js",
   "type": "commonjs",
   "scripts": {
+    "demo": "cd ../../ && MM_CONFIG_FILE=modules/MMM-anotherNewsFeed/demo.config.js node --run start:dev",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "test": "node --run lint"
