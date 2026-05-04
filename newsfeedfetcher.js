@@ -52,18 +52,36 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
       const url = item.url || item.link || "";
 
       let images = []
+			const addImageUrls = (value, type = null) => {
+				if (!value) {
+					return;
+				}
+
+				const values = Array.isArray(value) ? value : [value];
+				for (const entry of values) {
+					if (typeof entry === "string") {
+						if (isImage(entry, type)) {
+							images.push(entry);
+						}
+						continue;
+					}
+
+					const candidateUrl = entry?.url || entry?.href;
+					const candidateType = entry?.type || type;
+					if (isImage(candidateUrl, candidateType)) {
+						images.push(candidateUrl);
+					}
+				}
+			}
 
 			if (Array.isArray(item?.link)) {
 				images = [...images, ...(item.link.filter((i) => {
-					return isImage(i?.href ?? '')
-				}).map((i) => { return i.href}))]
+					return isImage(i?.href ?? "")
+				}).map((i) => { return i.href }))]
 			}
-			if (isImage(item?.enclosure?.url, item?.enclosure?.type)) {
-				images.push(item.enclosure.url)
-			}
-			if (isImage(item?.['media:content']?.url)) {
-				images.push(item['media:content'].url)
-      }
+			addImageUrls(item?.enclosure)
+			addImageUrls(item?.["media:content"])
+			addImageUrls(item?.["media:thumbnail"], "image")
 
       // Check both description and content:encoded for img tags
 			const contentToCheck = [
