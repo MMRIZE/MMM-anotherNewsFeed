@@ -5,6 +5,7 @@ const iconv = require("iconv-lite");
 const { htmlToText } = require("html-to-text");
 const Log = require("logger");
 const NodeHelper = require("node_helper");
+const { extractImageFromItem } = require("./core/utils");
 
 /**
  * Responsible for requesting an update on the set interval and broadcasting the data.
@@ -32,13 +33,6 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 	 * Request the new items.
 	 */
   const fetchNews = () => {
-    const isImage = (url, type = null) => {
-			if (type && type.search('image') > -1) {
-				return true
-			} else {
-				return (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(url)
-			}
-		}
 		clearTimeout(reloadTimer);
 		reloadTimer = null;
 		items = [];
@@ -50,36 +44,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 			let description = item.description || item.summary || item.content || "";
 			const pubdate = item.pubdate || item.published || item.updated || item["dc:date"] || item["a10:updated"];
       const url = item.url || item.link || "";
-
-      let images = []
-
-			if (Array.isArray(item?.link)) {
-				images = [...images, ...(item.link.filter((i) => {
-					return isImage(i?.href ?? '')
-				}).map((i) => { return i.href}))]
-			}
-			if (isImage(item?.enclosure?.url, item?.enclosure?.type)) {
-				images.push(item.enclosure.url)
-			}
-			if (isImage(item?.['media:content']?.url)) {
-				images.push(item['media:content'].url)
-      }
-
-      // Check both description and content:encoded for img tags
-			const contentToCheck = [
-				item?.description,
-				item?.content,
-				item?.[':content:encoded'],
-				item?.['content:encoded']
-			].filter(Boolean);
-
-			for (const content of contentToCheck) {
-				const regex = /<img[^>]+src=["']([^"'>]+)["']/g;
-				let match;
-				while ((match = regex.exec(content))) {
-					images.push(match[1])
-				}
-			}
+      const image = extractImageFromItem(item);
 
 			if (title && pubdate) {
 				// Convert HTML entities, codes and tag
@@ -97,7 +62,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 					description: description,
 					pubdate: pubdate,
 					url: url,
-          image: images?.[0] || null,
+          image: image,
 					hash: hashUtility.createHash("sha256").update(`${pubdate} :: ${title} :: ${url}`).digest("hex")
 				});
 			} else if (logFeedWarnings) {

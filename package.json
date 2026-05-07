@@ -14,7 +14,8 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "release": "commit-and-tag-version --commit-all --config ./changelog.config.js",
-    "test": "node --run lint"
+    "test": "node --run lint && node --run test:unit",
+    "test:unit": "node --test 'tests/**/*.test.mjs'"
   },
   "repository": {
     "type": "git",
