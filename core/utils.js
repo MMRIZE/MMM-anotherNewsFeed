@@ -31,7 +31,7 @@ function extractImageFromItem (item) {
 		images.push(item.enclosure.url);
 	}
 
-	if (isImage(item?.["media:content"]?.url)) {
+	if (isImage(item?.["media:content"]?.url, item?.["media:content"]?.type)) {
 		images.push(item["media:content"].url);
 	}
 
