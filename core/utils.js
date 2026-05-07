@@ -35,6 +35,13 @@ function extractImageFromItem (item) {
 		images.push(item["media:content"].url);
 	}
 
+	const thumbnail = Array.isArray(item?.["media:thumbnail"])
+		? item["media:thumbnail"][0]
+		: item?.["media:thumbnail"];
+	if (thumbnail?.url && isImage(thumbnail.url, "image")) {
+		images.push(thumbnail.url);
+	}
+
 	const contentToCheck = [
 		item?.description,
 		item?.content,

@@ -77,6 +77,11 @@ describe("extractImageFromItem", () => {
 		assert.equal(extractImageFromItem(item), "http://example.com/media.bin");
 	});
 
+	it("extracts image from media:thumbnail", () => {
+		const item = { "media:thumbnail": { url: "http://example.com/thumb.jpg" } };
+		assert.equal(extractImageFromItem(item), "http://example.com/thumb.jpg");
+	});
+
 	it("extracts image from :content:encoded (leading colon variant)", () => {
 		const item = { ":content:encoded": '<img src="http://example.com/colon.jpg">' };
 		assert.equal(extractImageFromItem(item), "http://example.com/colon.jpg");
